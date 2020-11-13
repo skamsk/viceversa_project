@@ -24,6 +24,6 @@ urlpatterns = [
     path('about/', views.about),
     path('home/', views.home),
     path('reversed/', views.reverse, name='reverse'),
-    path('news/', include('news.urls'))
+    path('', include('news.urls'))
 
 ]
