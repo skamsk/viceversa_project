@@ -33,6 +33,7 @@
         {% for item in news %}
               <div class="card mb-3 ml-3">
                 <div class="card-header">
+                  {{ forloop.counter }}
                   Категория: {{item.category}}
                 </div>
               <div class="card-body">
