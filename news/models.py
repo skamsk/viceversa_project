@@ -13,13 +13,15 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
-    def my_fync(self):
+    @staticmethod
+    def my_fync():
         return 'Hello from model'
 
     class Meta:
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
         ordering = ['-created_at']
+
 
 class Category(models.Model):
     title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование категории')

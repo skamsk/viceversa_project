@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{title}}::{{ block.super }}
+{{category.title}}::{{ block.super }}
 {% endblock %}
 {% block sidebar %}
-<div class="list-group">
-    {% for item in categories%}
-    <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>
-    {% endfor %}
-</div>
+    <div class="list-group">
+        {% for item in categories%}
+        <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+        {% endfor %}
+    </div>
 {% endblock %}
 {% block content %}
     {% for item in news %}
     <div class="card mb-3 ml-3">
         <div class="card-header">
-            <a href="{% url 'category' item.category.pk %}">Категория: {{ item.category }}</a>
+            <!--            <a href="{% url 'category' item.category.pk %}">Категория: {{ item.category }}</a>-->
+            <p>Категория: {{ item.category }}</p>
         </div>
         <div class="card-body">
             <div class="media">

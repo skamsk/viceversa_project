@@ -1,11 +1,14 @@
-from django.http import  HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 
+
 def about(request):
-    return  HttpResponse("Hello people")
+    return HttpResponse("Hello people")
+
 
 def home(request):
-    return render(request, 'home.html', {"gosha":request})
+    return render(request, 'home.html', {"gosha": request})
+
 
 def reverse(request):
     text = request.GET['usertext']
