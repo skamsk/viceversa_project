@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Добавление новости::{{ block.super }}
+{% endblock %}
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+{% block content %}
+
+<H1>Добавление новости</H1>
+<form action="{% url 'add_news' %}" method="post"></form>
+{{ form.as_table }}
+<button type="submit" class="btn btn-primary btn-block">Добавить новость</button>
+{% endblock %}
