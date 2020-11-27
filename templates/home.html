@@ -5,6 +5,7 @@
     <title>First file </title>
 </head>
 <body>
+    {% csrf_token %}
     <p>{{gosha}}</p>
     <form action="{% url 'reverse' %}">
         <H1>"VICE VERSA"</H1>
