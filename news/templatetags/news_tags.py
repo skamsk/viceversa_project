@@ -14,3 +14,5 @@ def show_categories():
     #categories = Category.objects.all()
     categories = Category.objects.annotate(cnt=Count('get_news')).filter(cnt__gt=0)
     return {'categories': categories}
+
+
