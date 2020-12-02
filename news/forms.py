@@ -1,5 +1,5 @@
 from django import forms
-from .models import Category, News
+from .models import  News
 import re
 from django.core.exceptions import ValidationError
 
