@@ -1,8 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from  django.core.paginator import Paginator
 
 def about(request):
-    return HttpResponse("Hello people")
+    objects = ['table1', 'dog2', 'cat3', 'meat4', 'fish5', 'bird6', 'fox7', 'chair8']
+    paginator = Paginator(objects, 2)
+    page_num = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_num)
+    #return HttpResponse("Hello people")
+    return render(request, 'news/test.html', {'page_obj': page_obj})
+
 
 def home(request):
     return render(request, 'home.html', {"gosha": request})
