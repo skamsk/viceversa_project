@@ -19,9 +19,6 @@ class HomeNews(ListView):
     def get_queryset(self):
         return News.objects.filter(is_published=True).select_related('category')
 
-
-
-
 def test(request):
     return HttpResponse("<H1>Тестовая страница</H1>")
 
