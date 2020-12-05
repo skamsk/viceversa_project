@@ -4,8 +4,11 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from .models import News, Category
 from .forms import NewsForm
+from .utils import MyMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class HomeNews(ListView):
+
+class HomeNews(MyMixin, ListView):
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
@@ -13,7 +16,7 @@ class HomeNews(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Главная страница'
+        context['title'] = self.get_upper('Главная страница')
         return context
 
     def get_queryset(self):
@@ -22,7 +25,7 @@ class HomeNews(ListView):
 def test(request):
     return HttpResponse("<H1>Тестовая страница</H1>")
 
-class NewsByCategory(ListView):
+class NewsByCategory(MyMixin, ListView):
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
@@ -31,7 +34,7 @@ class NewsByCategory(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         #category = Category.objects.get(pk=category_id)
-        context['title'] = Category.objects.get(pk=self.kwargs['category_id'])
+        context['title'] = self.get_upper(Category.objects.get(pk=self.kwargs['category_id']))
         return context
 
     def get_queryset(self):
@@ -42,11 +45,13 @@ class ViewNews(DetailView):
     #pk_url_kwarg = 'news_id'
     context_object_name = 'news_item'
 
-class CreateNews(CreateView):
+class CreateNews(LoginRequiredMixin, CreateView):
     form_class = NewsForm
     template_name = 'news/add_news.html'
     success_url = reverse_lazy('home')
-
+    #login_url = '/admin/'
+    #login_url = reverse_lazy('home')
+    raise_exception = True
 
 # def view_news(request, news_id):
 #     #news_item = News.objects.get(pk=news_id)
