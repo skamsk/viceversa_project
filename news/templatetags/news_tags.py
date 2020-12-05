@@ -12,6 +12,7 @@ def get_categories():
 @register.inclusion_tag('news/list_categories.html')
 def show_categories():
     #categories = Category.objects.all()
+    #TODO: понять как считать только опубликованные записи
     categories = Category.objects.annotate(cnt=Count('get_news')).filter(cnt__gt=0)
     return {'categories': categories}
 
