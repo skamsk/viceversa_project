@@ -8,6 +8,12 @@
 {% endblock %}
 {% block content %}
 
-<H1>Авторизация</H1>
+<H1>Login</H1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+    </form>
 
 {% endblock %}
