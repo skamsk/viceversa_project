@@ -3,11 +3,28 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from .models import News, Category
-from .forms import NewsForm, UserRegisterForm, UserLoginForm
+from .forms import NewsForm, UserRegisterForm, UserLoginForm, ContactForm
 from .utils import MyMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, logout
 from django.contrib import messages
+from django.core.mail import send_mail
+
+def sendmail(request):
+    print('123')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 'skamsk@list.ru', ['andr-yakimov@yandex.ru'], fail_silently=False)
+            if mail:
+                messages.success(request, 'Сообщение успешно отправлено')
+                return redirect('mail')
+        else:
+            messages.error(request, 'Ошибка отправки сообщения')
+    else:
+        form = ContactForm()
+    return render(request, 'news/sendmail.html', {'form': form})
+
 
 def register(request):
         if request.method == 'POST':
@@ -56,6 +73,9 @@ class HomeNews(MyMixin, ListView):
 
 def test(request):
     return HttpResponse("<H1>Тестовая страница</H1>")
+
+
+
 
 class NewsByCategory(MyMixin, ListView):
     model = News

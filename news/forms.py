@@ -5,14 +5,15 @@ from django.contrib.auth.models import User
 import re
 from django.core.exceptions import ValidationError
 
+class ContactForm(forms.Form):
+        subject = forms.CharField(label='Тема', widget=forms.TextInput(attrs={"class": "form-control"}))
+        content = forms.CharField(label='Текст', widget=forms.Textarea(attrs={"class": "form-control", "rows": 5}))
+
+
 
 class UserLoginForm(AuthenticationForm):
         username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(attrs={"class": "form-control"}))
         password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={"class": "form-control"}))
-
-
-
-
 
 class UserRegisterForm(UserCreationForm):
         username = forms.CharField(label='Имя пользователя', help_text='Длинна имени пользователя 150 символов', widget=forms.TextInput(attrs={"class": "form-control"}))

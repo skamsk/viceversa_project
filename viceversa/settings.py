@@ -134,3 +134,10 @@ MEDIA_URL = '/media/'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'skamsk@list.ru'
+EMAIL_HOST_PASSWORD = 'stop123!@#'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
