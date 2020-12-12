@@ -11,14 +11,13 @@ from django.contrib import messages
 from django.core.mail import send_mail
 
 def sendmail(request):
-    print('123')
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
             mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 'skamsk@list.ru', ['andr-yakimov@yandex.ru'], fail_silently=False)
             if mail:
                 messages.success(request, 'Сообщение успешно отправлено')
-                return redirect('mail')
+                return redirect('sendmail')
         else:
             messages.error(request, 'Ошибка отправки сообщения')
     else:
@@ -43,7 +42,7 @@ def register(request):
 
 def user_login(request):
     if request.method == "POST":
-        form = UserLoginForm(data = request.POST)
+        form = UserLoginForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)

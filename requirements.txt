@@ -4,4 +4,4 @@ Pillow==8.0.1
 pytz==2020.4
 sqlparse==0.4.1
 debug_toolbar
-django-ckeditor==3.6.2.1
+django-ckeditor

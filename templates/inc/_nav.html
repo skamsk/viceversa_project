@@ -9,6 +9,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'home' %}">Главная</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'sendmail' %}">Отправка сообщения</a>
+            </li>
             {% if request.user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'add_news' %}">Добавить новость</a>
