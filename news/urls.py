@@ -1,9 +1,13 @@
 from  django.urls import path
 from .views import *
+from django.views.decorators.cache import cache_page
 
 urlpatterns = [
     #path('', index, name='home'),
     path('', HomeNews.as_view(), name='home'),
+
+    # КЭШИРОВАНИЕ
+    #path('', cache_page(60) (HomeNews.as_view()), name='home'),
     path('about/', test, name='about'),
     path('sendmail/', sendmail, name='sendmail'),
     #path('category/<int:category_id>/', get_category, name='category'),
