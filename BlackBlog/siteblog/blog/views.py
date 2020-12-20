@@ -48,7 +48,6 @@ class PostsByTag(ListView):
     allow_empty = False
 
     def get_queryset(self):
-        print(Post.objects.filter(tags__slug=self.kwargs['slug']))
         return Post.objects.filter(tags__slug=self.kwargs['slug'])
 
     def get_context_data(self, *, object_list=None, **kwargs):
