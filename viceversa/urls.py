@@ -29,6 +29,7 @@ urlpatterns = [
     path('reversed/', views.reverse, name='reverse'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('news.urls')),
+    path('test/', include('testapp.urls')),
     path('captcha/', include('captcha.urls')),
 
 ]
