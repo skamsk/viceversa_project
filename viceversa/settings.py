@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'news.apps.NewsConfig',
     'testapp.apps.TestappConfig',
+    'mptt',
 
 
 ]
